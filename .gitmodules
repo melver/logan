@@ -1,0 +1,6 @@
+[submodule "deps/param"]
+	path = deps/param
+	url = git://github.com/melver/param.git
+[submodule "deps/lancet"]
+	path = deps/lancet
+	url = git://github.com/melver/lancet.git

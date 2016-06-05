@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+export PYTHON=pypy
+exec "${0%/*}/logan" "$@"

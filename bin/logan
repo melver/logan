@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# bin/logan: Convenience wrapper to set up PYTHONPATH and select correct
+# version of dependency.
+#
+# Author: Marco Elver <me AT marcoelver.com>
+# Date: Mon Feb  6 23:05:37 GMT 2012
+
+LOGAN_ROOT="$(cd "${0%/*}/.." && pwd)"
+PYTHONPATH="${PYTHONPATH}:${LOGAN_ROOT}/lib/python"
+PYTHONPATH+=":${LOGAN_ROOT}/deps/param:${LOGAN_ROOT}/deps/lancet"
+
+export PYTHONPATH
+
+if [[ -n "$PYTHON" ]]; then
+	case "$PYTHON" in
+		pylint)
+			pylint "$@"
+			;;
+		ipython)
+			exec "$PYTHON" "$@"
+			;;
+		*)
+			exec "$PYTHON" "${LOGAN_ROOT}/lib/python/logan/main.py" "$@"
+			;;
+	esac
+else
+	exec "${LOGAN_ROOT}/lib/python/logan/main.py" "$@"
+fi

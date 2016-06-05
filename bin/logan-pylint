@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+export PYTHON=pylint
+exec "${0%/*}/logan" "$@"
